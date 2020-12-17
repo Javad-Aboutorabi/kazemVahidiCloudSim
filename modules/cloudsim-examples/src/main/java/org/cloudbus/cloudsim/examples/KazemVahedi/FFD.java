@@ -10,9 +10,7 @@ public class FFD {
 //        print(hosts, vm);
         int numberOfHost = hosts.size();
         for (int j = 0; j < numberOfHost; j++) {
-            if (hosts.get(j).getMips() >= vm.getMips() &&
-                    hosts.get(j).getRam() >= vm.getRam() &&
-                    hosts.get(j).getBw() >= vm.getBw()) {
+            if (hosts.get(j).getMips() >= vm.getMips() && hosts.get(j).getRam() >= vm.getRam() && hosts.get(j).getBw() >= vm.getBw()) {
                 ffdResult = j;
                 vm.setSet(true);
                 hosts.get(j).setMips((int) (hosts.get(j).getMips() - vm.getMips()));
@@ -34,6 +32,7 @@ public class FFD {
                 }
             }
         }
+        System.out.println("bw with provisioner : "+ hosts.get(0).getBwProvisioner().getBw()+"     bw with bw : "+hosts.get(0).getBw());
         return ffdResult;
     }
 
@@ -45,7 +44,7 @@ public class FFD {
                             "\t" + "Bw: " + h.getBw() + "\t" + "Ram: " + h.getRam());
         }
         System.out.println("-------------- Vms --------------");
-        System.out.println("vm ID: " + vm.getId() + "\t" + "Type: " + vm.getType()
-                + "\t" + "Mips: " + vm.getMips() + "\t" + "Ram: " + vm.getRam());
+        System.out.println("vm ID: " + vm.getId() + "\t" + "\t" + "Mips: " + vm.getMips() + "\t"
+                + "Ram: " + vm.getRam() + "\t" + "BandWidth: " + vm.getBw());
     }
 }

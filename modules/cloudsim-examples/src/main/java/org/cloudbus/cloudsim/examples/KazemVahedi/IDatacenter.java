@@ -115,15 +115,11 @@ public class IDatacenter extends Datacenter {
 
     public int hostActive() {
         List<IHost> hosts = new ArrayList<>();
-        for (int i = 0; i < getHostList().size(); i++) {
+        for (int i = 0; i < getHostList().size(); i++)
             hosts.add((IHost) getHostList().get(i));
-        }
-
-        for (IHost host : hosts) {
-            if (host.isActiveFlag()) {
+        for (IHost host : hosts)
+            if (host.isActiveFlag())
                 counter++;
-            }
-        }
         return counter;
     }
 
@@ -155,7 +151,6 @@ public class IDatacenter extends Datacenter {
             sumWastage += host.resourceWastage();
         }
         averageWastage = sumWastage / counter;
-
         return averageWastage;
     }
 

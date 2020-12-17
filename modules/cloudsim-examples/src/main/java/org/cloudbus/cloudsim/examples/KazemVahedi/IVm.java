@@ -10,9 +10,8 @@ public class IVm extends Vm {
     private boolean set;
 
 
-    public IVm(int id, int type, int userId,boolean set, double mips, int numberOfPes, int ram, long bw, long size, String vmm, CloudletScheduler cloudletScheduler) {
+    public IVm(int id, int userId,boolean set, double mips, int numberOfPes, int ram, long bw, long size, String vmm, CloudletScheduler cloudletScheduler) {
         super(id, userId, mips, numberOfPes, ram, bw, size, vmm, cloudletScheduler);
-        this.type = type;
         this.set = set;
         vmPower=(mips*numberOfPes)+idle;
     }
@@ -21,9 +20,7 @@ public class IVm extends Vm {
         return vmPower;
     }
 
-    public int getType() {
-        return type;
-    }
+
 
     public boolean isSet() {
         return set;
