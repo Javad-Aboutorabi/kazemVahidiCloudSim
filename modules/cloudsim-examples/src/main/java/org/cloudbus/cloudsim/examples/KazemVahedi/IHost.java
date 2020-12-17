@@ -13,7 +13,6 @@ public class IHost extends Host {
 
     public ArrayList<IVm> iVmList = new ArrayList<>();
     private int mips;
-    private int type;
     public final double busy = 215, idle = 162;
     private int ram;
     private boolean activeFlag;
@@ -31,14 +30,12 @@ public class IHost extends Host {
     public IHost(int id, boolean activeFlag, int type, RamProvisioner ramProvisioner, BwProvisioner bwProvisioner,
                  long storage, List<? extends Pe> peList, VmScheduler vmScheduler) {
         super(id, ramProvisioner, bwProvisioner, storage, peList, vmScheduler);
-        this.type = type;
         this.activeFlag=activeFlag;
         mips = this.getTotalMips();;
         hostCpu = this.getTotalMips();;
-        hostBW=this.getBw();
-
-        ram = getRamProvisioner().getRam();
         hostRam = getRamProvisioner().getRam();
+        hostBW=this.getBwProvisioner().getBw();
+        ram = getRamProvisioner().getRam();
     }
 
 
@@ -68,72 +65,6 @@ public class IHost extends Host {
         return power;
     }
 
-    public double numberVmType1() {
-        double numberVmType1 = 0;
-        if (!iVmList.isEmpty()) {
-            for (IVm vm : iVmList) {
-                if (vm.getType() == 1)
-                    numberVmType1++;
-            }
-            return numberVmType1;
-        }
-        return 0;
-    }
-
-    public double numberVmType2() {
-        double numberVmType2 = 0;
-        if (!iVmList.isEmpty()) {
-            for (IVm vm : iVmList) {
-                if (vm.getType() == 2)
-                    numberVmType2++;
-            }
-            return numberVmType2;
-        }
-        return 0;
-    }
-
-    public double numberVmType3() {
-        double numberVmType3 = 0;
-        if (!iVmList.isEmpty()) {
-            for (IVm vm : iVmList) {
-                if (vm.getType() == 3)
-                    numberVmType3++;
-            }
-            return numberVmType3;
-        }
-        return 0;
-    }
-
-
-    public double gini() {
-       // double numberVmType1 = 0, numberVmType2 = 0, numberVmType3 = 0, gini, sum;
-        double gini,sum;
-        if (!iVmList.isEmpty()) {
-          // for (IVm vm : iVmList) {
-           //     if (vm.getType() == 1) numberVmType1++;
-          //      else if (vm.getType() == 2) numberVmType2++;
-          //      else if (vm.getType() == 3) numberVmType3++;
-          //  }
-            double a = (numberVmType1() / iVmList.size());
-            double b = (numberVmType2() / iVmList.size());
-            double c = (numberVmType3()/ iVmList.size());
-            double type1= Math.pow(a,2);
-            double type2= Math.pow(b,2);
-            double type3= Math.pow(c,2);
-            sum = type1 + type2+type3;
-            // sum = ((numberVmType1 / iVmList.size()) + (numberVmType2 / iVmList.size()) + (numberVmType3 / iVmList.size()));
-            //jini = (1 - (Math.pow(sum, 2)));
-            gini= 1- sum;
-            return gini;
-        }
-        return 0;
-    }
-
-
-    public int getType() {
-        return type;
-    }
-
     public int getMips() {
         return mips;
     }
@@ -149,6 +80,9 @@ public class IHost extends Host {
 
     public void setRam(int ram) {
         this.ram = ram;
+    }
+    public void setBw(double bw) {
+        this.hostBW = bw;
     }
 
     public boolean isActiveFlag() {

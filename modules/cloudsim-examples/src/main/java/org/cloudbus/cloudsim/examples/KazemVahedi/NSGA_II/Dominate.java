@@ -14,16 +14,6 @@ public class Dominate {
         return false;
     }
 
-    public ArrayList<Solution> classificationFronts(Map<Integer, ArrayList<Solution>> fronts, int front) {
-        ArrayList<Solution> f = new ArrayList<>();
-        for (int i = 0; i < fronts.get(front).size(); i++) {
-            f.add(i, fronts.get(front).get(i));
-        }
-
-        return f;
-    }
-
-
     public Map<Integer, ArrayList<Solution>> front(ArrayList<Solution> populations) {
         ArrayList<Solution> f1 = new ArrayList<>();
         for (int i = 0; i < populations.size(); i++) {

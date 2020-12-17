@@ -53,7 +53,7 @@ public class IDatacenter extends Datacenter {
      * @post $none
      */
     protected void processVmCreate(SimEvent ev, boolean ack) {
-        boolean ffd = false;
+        boolean ffd = true;
         IVm vm = (IVm) ev.getData();
         ArrayList<IHost> hosts = new ArrayList<>();
         hosts.addAll(getHostList());
@@ -159,35 +159,4 @@ public class IDatacenter extends Datacenter {
         return averageWastage;
     }
 
-    public double averageGini() {
-        double averageGini;
-        double sumGini = 0;
-        int a;
-        List<IHost> hosts = new ArrayList<>();
-        for (int i = 0; i < getHostList().size(); i++) {
-            hosts.add((IHost) getHostList().get(i));
-        }
-        a = hosts.size();
-        for (IHost host : hosts) {
-            sumGini += host.gini();
-        }
-        averageGini = sumGini / a;
-        return averageGini;
-    }
-
-   /* public double avrageVmType1(){
-        double avrageVmType1;
-        double sum=0;
-        List<IHost> hosts = new ArrayList<>();
-        for (int i = 0; i < getHostList().size(); i++) {
-            hosts.add((IHost) getHostList().get(i));
-        }
-        int a= iVmList.size();
-        for (IHost host : hosts) {
-            sum += host.numberVmType1();
-        }
-        avrageVmType1 = sum /iVmList.size();
-        return avrageVmType1;
-
-    }*/
 }

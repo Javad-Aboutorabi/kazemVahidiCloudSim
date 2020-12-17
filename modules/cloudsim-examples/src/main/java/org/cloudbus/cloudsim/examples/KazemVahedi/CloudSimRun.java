@@ -136,7 +136,7 @@ public class CloudSimRun {
             vmlist = createVM(brokerId, j);
 
 
-            cloudletList = createCloudlet(brokerId, 40); // creating 40 cloudlets
+            cloudletList = createCloudlet(brokerId, 10); // creating 40 cloudlets
 
             broker.submitVmList(vmlist);
             broker.submitCloudletList(cloudletList);
@@ -292,30 +292,23 @@ public class CloudSimRun {
             String datacenterName = host.getDatacenter().getName();
             boolean a = host.isActiveFlag();
             if (a) {
-                Log.printLine("Host ID  " + host.getId() + "     with Host type " + host.getType() + " In    "
+                Log.printLine("Host ID  " + host.getId() + " In    "
                         + datacenterName + "    Is busy" + "   number of vm in host     " + host.iVmList.size());
 
             } else {
-                Log.printLine("Host ID  " + host.getId() + "     with Host type " + host.getType() + " In    "
+                Log.printLine("Host ID  " + host.getId() +" In    "
                         + datacenterName + "    Is idle" + "   number of vm in host     "
                         + host.iVmList.size());
             }
-            Log.printLine("power    " + host.powerConsumption());
-            Log.printLine("Wastage  " + host.resourceWastage());
-            Log.printLine("jini  " + host.gini());
-            Log.printLine("numberVmType1:  " + host.numberVmType1());
-            Log.printLine("numberVmType2:  " + host.numberVmType2());
-            Log.printLine("numberVmType3:  " + host.numberVmType3());
+
 
 
         }
         Log.printLine("\n-------------------------------------");
         IDatacenter dc = (IDatacenter) hostList.get(0).getDatacenter();
-        Log.printLine("avragePower:  " + dc.averagePower());
+        Log.printLine("averagePower:  " + dc.averagePower());
         Log.printLine("hostActive:  " + dc.hostActive());
-        Log.printLine("avrageWastage:  " + dc.averageWastage());
-        Log.printLine("avrageGini:  " + dc.averageGini());
-        // Log.printLine("avrageVmType1   " + dc.avrageVmType1());
+        Log.printLine("averageWastage:  " + dc.averageWastage());
         Log.printLine("\n-------------------------------------\n");
 
     }

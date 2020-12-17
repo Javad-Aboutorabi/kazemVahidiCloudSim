@@ -43,7 +43,6 @@ public class NSGA2 {
                 nQtList.add(crosoverAndMutaion(nRtList.get(list.get(0)), nRtList.get(list.get(1))));
             }
             nRtList.addAll(nQtList);//merging the population
-//            nQtList.addAll(generateSolution(nQt));// بعدا پاک شود
 
             nRtList = RemoveDuplicates(nRtList);
             nRtList.addAll(generateSolution(hostList, vmList, nRt - nRtList.size()));
@@ -128,7 +127,8 @@ public class NSGA2 {
     }
 
     //انتخاب و جداسازی به اندازه nPt برای نسل بعد
-    private ArrayList<Solution> toSplitFor_nPtList(Map<Integer, ArrayList<Solution>> map, ArrayList<Solution> nPtList, int numberOfFronts) {
+    private ArrayList<Solution> toSplitFor_nPtList(Map<Integer, ArrayList<Solution>> map,
+                                                   ArrayList<Solution> nPtList, int numberOfFronts) {
         for (int i = 1; i <= numberOfFronts; i++) {
             if (nPtList.size() + map.get(i).size() < nPt) {
                 nPtList.addAll(map.get(i));
@@ -166,7 +166,8 @@ public class NSGA2 {
     private void printSolutionList(ArrayList<Solution> nPtList) {
         System.out.println("================ print Solution List ================");
         for (Solution solution1 : nPtList)
-            System.out.println(solution1.front + "  f1 : " + 100 * (solution1.f1) + "  f2 : " + solution1.f2 + "  distance : " + solution1.distance + "      : " + solution1.chromosome);
+            System.out.println(solution1.front + "  f1 : " + 100 * (solution1.f1) +
+                    "  f2 : " + solution1.f2 + "  distance : " + solution1.distance + "      : " + solution1.chromosome);
     }
 
     private void printMap(Map<Integer, ArrayList<Solution>> map, int numberOfFronts) {
