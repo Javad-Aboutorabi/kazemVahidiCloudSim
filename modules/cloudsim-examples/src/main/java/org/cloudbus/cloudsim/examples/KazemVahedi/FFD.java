@@ -32,7 +32,7 @@ public class FFD {
                 }
             }
         }
-        System.out.println("bw with provisioner : "+ hosts.get(0).getBwProvisioner().getBw()+"     bw with bw : "+hosts.get(0).getBw());
+        System.out.println("bw with provisioner : " + hosts.get(0).getBwProvisioner().getBw() + "     bw with bw : " + hosts.get(0).getBw());
         return ffdResult;
     }
 

@@ -1,7 +1,10 @@
 package org.cloudbus.cloudsim.examples.KazemVahedi;
 
 
-import org.cloudbus.cloudsim.*;
+import org.cloudbus.cloudsim.Datacenter;
+import org.cloudbus.cloudsim.DatacenterCharacteristics;
+import org.cloudbus.cloudsim.Storage;
+import org.cloudbus.cloudsim.VmAllocationPolicy;
 import org.cloudbus.cloudsim.core.CloudSim;
 import org.cloudbus.cloudsim.core.CloudSimTags;
 import org.cloudbus.cloudsim.core.SimEvent;
@@ -87,6 +90,7 @@ public class IDatacenter extends Datacenter {
         boolean result = getVmAllocationPolicy().allocateHostForVm(vm, hs);
         if (ack) {
             int[] data = new int[3];
+
 
             data[0] = getId();
             data[1] = vm.getId();

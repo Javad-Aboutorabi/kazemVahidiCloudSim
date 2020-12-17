@@ -10,15 +10,14 @@
 
 package org.cloudbus.cloudsim.examples.KazemVahedi;
 
-import java.text.DecimalFormat;
-import java.util.*;
-import java.util.Scanner;
-
 import org.cloudbus.cloudsim.*;
 import org.cloudbus.cloudsim.core.CloudSim;
 import org.cloudbus.cloudsim.provisioners.BwProvisionerSimple;
 import org.cloudbus.cloudsim.provisioners.PeProvisionerSimple;
 import org.cloudbus.cloudsim.provisioners.RamProvisionerSimple;
+
+import java.text.DecimalFormat;
+import java.util.*;
 
 
 /**
@@ -296,11 +295,10 @@ public class CloudSimRun {
                         + datacenterName + "    Is busy" + "   number of vm in host     " + host.iVmList.size());
 
             } else {
-                Log.printLine("Host ID  " + host.getId() +" In    "
+                Log.printLine("Host ID  " + host.getId() + " In    "
                         + datacenterName + "    Is idle" + "   number of vm in host     "
                         + host.iVmList.size());
             }
-
 
 
         }
