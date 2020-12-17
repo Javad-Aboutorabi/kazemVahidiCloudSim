@@ -58,7 +58,7 @@ public class CloudSimRun {
         for (int i = 0; i < vms; i++) {
             r = new Random();
             type = 1 + r.nextInt(3);
-            vm[i] = new IVm(i, type, userId, false, mips, pesNumber, ram, bw, size, vmm, new CloudletSchedulerSpaceShared());
+            vm[i] = new IVm(i, userId, false, mips, pesNumber, ram, bw, size, vmm, new CloudletSchedulerSpaceShared());
             //for creating a VM with a space shared scheduling policy for cloudlets:
             //vm[i] = Vm(i, userId, mips, pesNumber, ram, bw, size, priority, vmm, new CloudletSchedulerSpaceShared());
 
@@ -185,12 +185,12 @@ public class CloudSimRun {
         // List<Pe> peList2 = new ArrayList<Pe>();
         // peList2.add(new Pe(0, new PeProvisionerSimple(mips)));
         // peList2.add(new Pe(1, new PeProvisionerSimple(mips)));
-        int numberOfHosts = 5;
+        int numberOfHosts = 2;
         //4. Create Hosts with its id and list of PEs and add them to the list of machines
         int hostId = 0;
-        int ram = 10000; //host memory (MB)
+        int ram = 4000; //host memory (MB)
         long storage = 10000000L; //host storage
-        int bw = 10000;
+        int bw = 4000;
 
 
 //        hostList.add(new IHost(hostId, false, 1, new RamProvisionerSimple(ram), new BwProvisionerSimple(bw), storage, peList1,
@@ -201,7 +201,7 @@ public class CloudSimRun {
             ra = new Random();
             type = 1 + ra.nextInt(3);
             hostList.add(new IHost(
-                    i, false, type, new RamProvisionerSimple(ram), new BwProvisionerSimple(bw),
+                    i, false, new RamProvisionerSimple(ram), new BwProvisionerSimple(bw),
                     storage, peList1, new VmSchedulerTimeShared(peList1)));
         }
 

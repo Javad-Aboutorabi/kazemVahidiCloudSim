@@ -95,7 +95,7 @@ public class Chromosome {
         IVm[] vm = new IVm[vms];
 
         for (int i = 0; i < vms; i++) {
-            vm[i] = new IVm(i, 1, userId, false, mips, pesNumber, ram, bw, size, vmm, new CloudletSchedulerTimeShared());
+            vm[i] = new IVm(1, userId, false, mips, pesNumber, ram, bw, size, vmm, new CloudletSchedulerTimeShared());
 
             list.add(vm[i]);
         }
@@ -188,7 +188,7 @@ public class Chromosome {
         for (int i = 0; i < numberOfHost; i++) {
             hostList.add(
                     new IHost(
-                            i, false, random.nextInt(4),
+                            i, false,
                             new RamProvisionerSimple(ram[random.nextInt(4)]), new BwProvisionerSimple(bw),
                             storage, peList2, new VmSchedulerTimeShared(peList1)
                     )
