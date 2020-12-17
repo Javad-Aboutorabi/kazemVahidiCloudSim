@@ -23,12 +23,10 @@ public class Solution {
 
     public Solution(ArrayList<Integer> chromosome, int f2) {
         this.chromosome = chromosome;
-//        this.f1 = f1;
+        this.f1 = f1(this.chromosome);
         this.f2 = f2;
         this.distance = -1;
-//        this.f1 = CalculateEfficiencyForF1(this.chromosome);
 //        System.out.println(this.f1);
-        this.f1 = f1(this.chromosome);
     }
 
     public Solution CreateChromosome(ArrayList<IHost> hostList, ArrayList<IVm> vmList) {
@@ -81,34 +79,37 @@ public class Solution {
         return sorted;
     }
 
-    // calculate bahrevri PLEASE REVISED
 
     private double f1(ArrayList<Integer> chromosome) {
-        double totalVmRamInHost = 0, totalVmCpuInHost = 0, wastage = 0;
+        double totalVmRamInHost, totalVmCpuInHost, totalBandwidthInHost, wastage = 0;
         for (IHost host : hostList) {
             totalVmCpuInHost = 0;
             totalVmRamInHost = 0;
+            totalBandwidthInHost = 0;
             for (int i = 0; i < chromosome.size(); i++) {
 
                 if (host.getId() == chromosome.get(i)) {
                     totalVmRamInHost = totalVmRamInHost + vmList.get(i).getRam();
                     totalVmCpuInHost = totalVmCpuInHost + vmList.get(i).getMips();
+                    totalBandwidthInHost = totalBandwidthInHost + vmList.get(i).getBw();
                 }
-                wastage += ((host.getHostCpu() - totalVmCpuInHost) / (2 * host.getHostCpu())) +
-                        ((host.getHostRam() - totalVmRamInHost) / (2 * host.getHostRam()));
+                wastage += ((host.getHostCpu() - totalVmCpuInHost) / (3 * host.getHostCpu())) +
+                        ((host.getHostRam() - totalVmRamInHost) / (3 * host.getHostRam()) +
+                                ((host.getBw() - totalBandwidthInHost) / (3 * host.getBw())));
 
             }
-            if (totalVmCpuInHost > host.getMips() || totalVmRamInHost > host.getHostRam()) {
-//                System.out.println("wastage  : " + wastage + "\n" +
-//                        "totalVmCpuInHost   : " + totalVmCpuInHost + "\n" +
-//                        "totalVmRamInHost   : " + totalVmRamInHost + "\n" +
-//                        "host CPU    " + host.getMips() + "\n" +
-//                        "host Ram    " + host.getHostRam());
+            if (totalVmCpuInHost > host.getMips() || totalVmRamInHost > host.getHostRam() || totalBandwidthInHost > host.getBw()) {
+                System.out.println("wastage  : " + wastage + "\n" +
+                        "totalVmCpuInHost   : " + totalVmCpuInHost + "\n" +
+                        "totalVmRamInHost   : " + totalVmRamInHost + "\n" +
+                        "totalBandwidthInHost   : " + totalBandwidthInHost + "\n" +
+                        "host CPU    " + host.getMips() + "\n" +
+                        "host Ram    " + host.getHostRam() + "\n" +
+                        "host BW    " + host.getBw());
                 return 100000.0;
             }
 
         }
-//        System.out.println("wastage     " + wastage);
         return wastage / 100;
     }
 }

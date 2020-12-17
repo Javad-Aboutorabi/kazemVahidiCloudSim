@@ -26,7 +26,7 @@ public class IHost extends Host {
         return hostRam;
     }
 
-    private double hostCpu, hostRam;
+    private double hostCpu, hostRam,hostBW;
 
     public IHost(int id, boolean activeFlag, int type, RamProvisioner ramProvisioner, BwProvisioner bwProvisioner,
                  long storage, List<? extends Pe> peList, VmScheduler vmScheduler) {
@@ -35,6 +35,7 @@ public class IHost extends Host {
         this.activeFlag=activeFlag;
         mips = this.getTotalMips();;
         hostCpu = this.getTotalMips();;
+        hostBW=this.getBw();
 
         ram = getRamProvisioner().getRam();
         hostRam = getRamProvisioner().getRam();
@@ -156,5 +157,10 @@ public class IHost extends Host {
 
     public void setActiveFlag(boolean activeFlag) {
         this.activeFlag = activeFlag;
+    }
+
+    @Override
+    public long getBw() {
+        return super.getBw();
     }
 }

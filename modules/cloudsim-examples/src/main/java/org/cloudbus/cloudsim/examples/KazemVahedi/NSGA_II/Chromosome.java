@@ -185,7 +185,7 @@ public class Chromosome {
 //                )
 //        ); // 7 machine
 
-        for (int i=0;i<numberOfHost;i++){
+        for (int i = 0; i < numberOfHost; i++) {
             hostList.add(
                     new IHost(
                             i, false, random.nextInt(4),

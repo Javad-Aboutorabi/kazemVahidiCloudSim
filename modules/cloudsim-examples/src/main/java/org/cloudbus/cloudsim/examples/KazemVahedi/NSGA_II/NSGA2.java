@@ -21,6 +21,7 @@ public class NSGA2 {
 
 
     public ArrayList<Integer> nsga2(ArrayList<IHost> hostList, ArrayList<IVm> vmList) {
+//        generate chromosomes
         chromosome.addAll(generateSolution(hostList, vmList, nRt));
         // population evaluation
 

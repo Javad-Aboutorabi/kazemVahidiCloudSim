@@ -126,12 +126,12 @@ public class CloudSimRun {
 
             //Fourth step: Create VMs and Cloudlets and send them
 
-          // Random r = new Random();
-          // int j = 1 + r.nextInt(100);
+            // Random r = new Random();
+            // int j = 1 + r.nextInt(100);
 
 
-            System.out.println("Number VM:" );
-            Scanner in= new Scanner(System.in);
+            System.out.println("Number VM:");
+            Scanner in = new Scanner(System.in);
             int j = in.nextInt();
             vmlist = createVM(brokerId, j);
 
@@ -152,7 +152,7 @@ public class CloudSimRun {
             printCloudletList(newList);
 
             long end = System.currentTimeMillis();
-            System.out.println("\n" +new Date() + "\n");
+            System.out.println("\n" + new Date() + "\n");
             long diff = end - start;
             System.out.println("Difference is : " + diff);
 
@@ -166,35 +166,31 @@ public class CloudSimRun {
     }
 
 
-
     private static IDatacenter createDatacenter(String name) {
 
         // Here are the steps needed to create a PowerDatacenter:
-        // 1. We need to create a list to store one or more
-        //    Machines
+        // 1. We need to create a list to store one or more Machines
 
         // 2. A Machine contains one or more PEs or CPUs/Cores. Therefore, should
-        //    create a list to store these PEs before creating
-        //    a Machine.
+        //    create a list to store these PEs before creating a Machine.
         List<Pe> peList1 = new ArrayList<Pe>();
-        int mips=100000;
+        int mips = 100000;
 
 
         // 3. Create PEs and add these into the list.
         //for a quad-core machine, a list of 4 PEs is required:
         peList1.add(new Pe(0, new PeProvisionerSimple(mips))); // need to store Pe id and MIPS Rating
 
-        //Another list, for a dual-core machine
-//        List<Pe> peList2 = new ArrayList<Pe>();
-//
-//        peList2.add(new Pe(0, new PeProvisionerSimple(mips)));
-//		peList2.add(new Pe(1, new PeProvisionerSimple(mips)));
-        int numberOfHosts =10;
+        // Another list, for a dual-core machine
+        // List<Pe> peList2 = new ArrayList<Pe>();
+        // peList2.add(new Pe(0, new PeProvisionerSimple(mips)));
+        // peList2.add(new Pe(1, new PeProvisionerSimple(mips)));
+        int numberOfHosts = 5;
         //4. Create Hosts with its id and list of PEs and add them to the list of machines
         int hostId = 0;
-        int ram =10000 ; //host memory (MB)
-        long storage = 1000000; //host storage
-        int bw = 100000;
+        int ram = 10000; //host memory (MB)
+        long storage = 10000000L; //host storage
+        int bw = 10000;
 
 
 //        hostList.add(new IHost(hostId, false, 1, new RamProvisionerSimple(ram), new BwProvisionerSimple(bw), storage, peList1,
@@ -315,15 +311,15 @@ public class CloudSimRun {
         }
         Log.printLine("\n-------------------------------------");
         IDatacenter dc = (IDatacenter) hostList.get(0).getDatacenter();
-        Log.printLine("avragePower:  "+ dc.averagePower());
+        Log.printLine("avragePower:  " + dc.averagePower());
         Log.printLine("hostActive:  " + dc.hostActive());
         Log.printLine("avrageWastage:  " + dc.averageWastage());
         Log.printLine("avrageGini:  " + dc.averageGini());
-       // Log.printLine("avrageVmType1   " + dc.avrageVmType1());
+        // Log.printLine("avrageVmType1   " + dc.avrageVmType1());
         Log.printLine("\n-------------------------------------\n");
 
     }
 
-    }
+}
 
 
