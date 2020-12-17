@@ -36,7 +36,10 @@ public class CloudSimRun {
      */
     public static List<IVm> vmlist;
 
-    private static List<IVm> createVM(int userId, int vms) {
+    private static List<IVm> createVM(int userId) {
+
+
+
 
         //Creates a container to store VMs. This list is passed to the broker later
         LinkedList<IVm> list = new LinkedList<IVm>();
@@ -50,13 +53,19 @@ public class CloudSimRun {
         String vmm = "Xen"; //VMM name
 
 
+        System.out.println(
+                "ram in vm"+ ram+
+                "   bw in vm"+bw+
+                "   mips in vm"+mips+
+                "   Number VM:");
+        Scanner in = new Scanner(System.in);
+        int vms = in.nextInt();
+
+
         //create VMs
         IVm[] vm = new IVm[vms];
-        Random r;
-        int type;
         for (int i = 0; i < vms; i++) {
-            r = new Random();
-            type = 1 + r.nextInt(3);
+
             vm[i] = new IVm(i, userId, false, mips, pesNumber, ram, bw, size, vmm, new CloudletSchedulerSpaceShared());
             //for creating a VM with a space shared scheduling policy for cloudlets:
             //vm[i] = Vm(i, userId, mips, pesNumber, ram, bw, size, priority, vmm, new CloudletSchedulerSpaceShared());
@@ -129,10 +138,8 @@ public class CloudSimRun {
             // int j = 1 + r.nextInt(100);
 
 
-            System.out.println("Number VM:");
-            Scanner in = new Scanner(System.in);
-            int j = in.nextInt();
-            vmlist = createVM(brokerId, j);
+
+            vmlist = createVM(brokerId);
 
 
             cloudletList = createCloudlet(brokerId, 10); // creating 40 cloudlets
@@ -184,21 +191,28 @@ public class CloudSimRun {
         // List<Pe> peList2 = new ArrayList<Pe>();
         // peList2.add(new Pe(0, new PeProvisionerSimple(mips)));
         // peList2.add(new Pe(1, new PeProvisionerSimple(mips)));
-        int numberOfHosts = 2;
+
+
+
+
         //4. Create Hosts with its id and list of PEs and add them to the list of machines
         int hostId = 0;
         int ram = 4000; //host memory (MB)
         long storage = 10000000L; //host storage
         int bw = 4000;
 
+        System.out.println("ram in host:"+ ram+
+                "   bw in host: "+bw+
+                "   Mips in host: "+mips+
+                "   Number Host: ");
+        Scanner in = new Scanner(System.in);
+        int numberOfHosts = in.nextInt();
 
 //        hostList.add(new IHost(hostId, false, 1, new RamProvisionerSimple(ram), new BwProvisionerSimple(bw), storage, peList1,
 //                new VmSchedulerTimeShared(peList1)));
-        Random ra;
-        int type;
         for (int i = 0; i < numberOfHosts; i++) {
-            ra = new Random();
-            type = 1 + ra.nextInt(3);
+
+
             hostList.add(new IHost(
                     i, false, new RamProvisionerSimple(ram), new BwProvisionerSimple(bw),
                     storage, peList1, new VmSchedulerTimeShared(peList1)));

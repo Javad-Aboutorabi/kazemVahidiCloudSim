@@ -56,7 +56,7 @@ public class IDatacenter extends Datacenter {
      * @post $none
      */
     protected void processVmCreate(SimEvent ev, boolean ack) {
-        boolean ffd = true;
+        boolean ffd = false;
         IVm vm = (IVm) ev.getData();
         ArrayList<IHost> hosts = new ArrayList<>();
         hosts.addAll(getHostList());
